@@ -3,11 +3,14 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
+
+
 ///////////////////////////////////////
 //AJAX calls
 ///////////////////////////////////////
 
-//oldschool way
+
+//oldschool way - XMLHttpRequest
 
 /* const getCountryData = function(country) {
     const request = new XMLHttpRequest();
@@ -43,6 +46,12 @@ getCountryData('hungary');
 getCountryData('usa');
 getCountryData('germany'); */
 
+
+
+///////////////////////////////////////
+//CALLCACK HELL 
+///////////////////////////////////////
+
 const renderCountry = function (data, className = '') {
     const html = `
         <article class="country ${className}">
@@ -60,7 +69,7 @@ const renderCountry = function (data, className = '') {
         countriesContainer.style.opacity = 1;
     
 }
-
+/*
 const getCountryAndNeighbour = function(country) {
 
     //AJAX call country 1
@@ -95,3 +104,37 @@ const getCountryAndNeighbour = function(country) {
 }
 
 getCountryAndNeighbour('usa');
+*/
+
+
+
+///////////////////////////////////////
+//FETCH  (.then)
+///////////////////////////////////////
+
+/* longer version
+const request = fetch('https://restcountries.com/v3.1/name/hungary');
+
+const getCountryData = function(country) {
+    fetch(`https://restcountries.com/v3.1/name/${country}`) //fetch-returning promise  
+    .then(function(resp){ //we handle the promise with then
+        console.log(resp)
+        return resp.json();
+    })
+    .then(function(data){ //we got acces to the
+        console.log(data)
+    })
+}
+getCountryData('hungary')*/
+
+
+const request = fetch('https://restcountries.com/v3.1/name/hungary');
+console.log(request)
+
+const getCountryData = function(country) {
+    fetch(`https://restcountries.com/v3.1/name/${country}`) //fetch-returning promise  
+    .then(resp => resp.json())
+    .then(data => renderCountry(data[0]))
+}
+
+getCountryData('hungary')
