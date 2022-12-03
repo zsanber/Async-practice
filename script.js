@@ -19,11 +19,6 @@ const getCountryData = function(country) {
 
         const [data] = JSON.parse(this.responseText);  //eq. const data = JSON.parse(this.responseText).data
         console.log(data);
-        //console.log(data.currencies.USD.name) 
-        //console.log(data.currencies.USD.symbol) 
-        //console.log(data.currencies[Object.keys(data.currencies)[0]])
-        //console.log(data.currencies[object.keys(Object.values(data.currencies)[0])[0]])
-
 
         const html = `
         <article class="country">
@@ -33,7 +28,7 @@ const getCountryData = function(country) {
                 <h4 class="country__region">${data.region}</h4>
                 <p class="country__row"><span>👫</span>${(+data.population/1000000).toFixed(1)} people</p>
                 <p class="country__row"><span>🗣️</span>${data.languages[Object.keys(data.languages)[0]]}</p>
-                <p class="country__row"><span>💰</span>${2}</p>
+                <p class="country__row"><span>💰</span>${data.currencies[Object.keys(data.currencies)[0]].name}</p>
             </div>
         </article>
     `;
@@ -46,3 +41,4 @@ const getCountryData = function(country) {
 
 getCountryData('hungary');
 getCountryData('usa');
+getCountryData('germany');
