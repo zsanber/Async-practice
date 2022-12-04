@@ -6,19 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
+    <!--<script defer src="notesASYNC.js"></script>-->
+    <!--<script defer src="createImage.js"></script>-->
     <title>Asynchronous JavaScript</title>
   </head>
   <body>
     <main class="container">
-      <div class="countries-choose">
-        <p>Choose a country: </p>
-        <form name="myForm" onsubmit= return countriesChoose()>
-          <input type="text" name="country" id="choosenCountry">
-          <input id ="submit" type="submit" value="Send">
-        </form>
-      </div>
+      <button class="btn-country">Where am I now?</button>
       <div class="countries"></div>
       <div class="images"></div>
+      <div class="countries-choose">
+        <p>choose a country directly: </p>
+        <form name="myForm">
+          <input type="text" name="country" id="choosenCountry">
+          <input id ="submit" value="Send">
+        </form>
+      </div>
     </main>
   </body>
 </html>
