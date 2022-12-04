@@ -53,6 +53,7 @@ getCountryData('germany'); */
 ///////////////////////////////////////
 
 const renderCountry = function (data, className = '') {
+    console.log(data);
     const html = `
         <article class="country ${className}">
             <img class="country__img" src="${data.flags.png}" />
@@ -102,7 +103,7 @@ const getCountryAndNeighbour = function(country) {
         })
     })
 }
-
+ 
 getCountryAndNeighbour('usa');
 */
 
@@ -128,13 +129,28 @@ const getCountryData = function(country) {
 getCountryData('hungary')*/
 
 
-const request = fetch('https://restcountries.com/v3.1/name/hungary');
-console.log(request)
-
 const getCountryData = function(country) {
-    fetch(`https://restcountries.com/v3.1/name/${country}`) //fetch-returning promise  
-    .then(resp => resp.json())
-    .then(data => renderCountry(data[0]))
+
+    fetch(`https://restcountries.com/v3.1/name/${country}`) //fetch-returning promise 
+        .then(res => res.json()) //the response will be transformed to JSON, return promise
+        .then(data => {
+            renderCountry(data[0]); //we render it to the DOM
+            const neighbours = data[0].borders;
+
+            if (!neighbours || neighbours.length == 0) return;
+
+            neighbours.forEach(neighbour => {
+                fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderCountry(data[0], 'neighbour')
+                    });
+            });
+        })    
+};
+
+const countriesChoose = function (choosenCountry) {
+    getCountryData(choosenCountry) 
 }
 
-getCountryData('hungary')
+getCountryData('hungary') 

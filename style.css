@@ -24,11 +24,15 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .countries {
   /* margin-bottom: 8rem; */
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 
   font-size: 2rem;
   opacity: 0;
@@ -61,6 +65,7 @@ body {
 .neighbour {
   transform: scale(0.8) translateY(1rem);
   margin-left: 0;
+  height: 50rem;
 }
 
 .country__img {
@@ -123,4 +128,30 @@ body {
   margin: 2rem;
   border: 3rem solid white;
   box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+
+/*countries-choose*/
+
+.countries-choose {
+  font-size: 2rem;
+  margin: 2.5rem;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+}
+
+.countries-choose p {
+  font-weight: bold;
+  text-align: center;
+}
+
+.countries-choose input {
+  height: 2.5rem;
+  margin: 0.3rem;
+}
+
+#submit {
+  background-color: rgb(233, 221, 224);
+  width: 5rem;
 }
